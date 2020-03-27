@@ -22,6 +22,7 @@ public class PlayerControllerPC : MonoBehaviour
     {
         Move();    
         Rotate();
+        Ground();
     }
 
     void Move()
@@ -42,5 +43,23 @@ public class PlayerControllerPC : MonoBehaviour
         gameCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         playerBody.Rotate(Vector3.up * rotateX);
+    }
+
+    void Ground()
+    {
+        bool isGrounded = character.isGrounded;
+        float verticalVelocity = 0.0f;
+ 
+        if (isGrounded)
+        {
+            verticalVelocity -= 0;
+        }
+        else
+        {
+            verticalVelocity -= 1;
+        }
+ 
+        Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
+        character.Move(moveVector);
     }
 }

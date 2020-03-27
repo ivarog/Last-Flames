@@ -1,4 +1,5 @@
 ﻿  using UnityEngine;
+  using UnityEngine.AI;
  
  public class RandomTree : MonoBehaviour {
  
@@ -8,12 +9,18 @@
      public Texture2D noiseImage;
      public float forestSize;
      public float treeDensity;
+     public NavMeshSurface navMeshSurface;
+     public float yPos;
+     public string tagObject;
+     public float areaAroundBonfire;
  
      private float baseDensity = 5.0f;
  
      // Use this for initialization
-     void Start () {
-         Generate();
+     void Start () 
+     {
+        Generate();
+        navMeshSurface.BuildNavMesh();
      }
  
      public void Generate() {
@@ -34,7 +41,7 @@
 
                     GameObject newTree = Instantiate(tree, transform);
                     newTree.transform.localScale = Vector3.one * size;
-                    newTree.transform.position = new Vector3(posX, 0, posZ);
+                    newTree.transform.position = new Vector3(posX, -yPos, posZ);
                     newTree.transform.parent = transform;
                     Vector3 euler = transform.eulerAngles;
                     euler.y = Random.Range(0f, 360f);
@@ -46,7 +53,7 @@
 
      public void Clean() 
      {
-        GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Tree");
+        GameObject[] allObjects = GameObject.FindGameObjectsWithTag(tagObject);
         foreach(GameObject obj in allObjects) 
         {
             DestroyImmediate(obj);
@@ -64,7 +71,7 @@
 
     bool IsAroundBonfire(float x, float z)
     {
-        if(x <= 5f && x >= -5f && z <= 5f && z >= -5f)
+        if(x <= areaAroundBonfire && x >= -areaAroundBonfire && z <= areaAroundBonfire && z >= -areaAroundBonfire)
         {
             return true;
         }

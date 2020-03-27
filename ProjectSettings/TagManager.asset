@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tree
+  - Metal
+  - Target
+  - ExplosiveBarrel
+  - Grass
+  - Mushroom
+  - Rock
   layers:
   - Default
   - TransparentFX
@@ -15,7 +21,7 @@ TagManager:
   - 
   - 
   - LP_Fire
-  - 
+  - Enviroment
   - 
   - 
   - 
