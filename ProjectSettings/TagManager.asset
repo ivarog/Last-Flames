@@ -11,6 +11,9 @@ TagManager:
   - Grass
   - Mushroom
   - Rock
+  - FxTemporaire
+  - Log
+  - Trunk
   layers:
   - Default
   - TransparentFX

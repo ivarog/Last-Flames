@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         agent.SetDestination(bonfire.transform.position);
-        if(Mathf.Abs(Vector3.Distance(transform.position, bonfire.transform.position)) <= 0.5f)
+        if(Mathf.Abs(Vector3.Distance(transform.position, bonfire.transform.position)) <= 0.8f)
         {
             agent.isStopped = true;
             animator.SetBool("BonfireReached", true);
