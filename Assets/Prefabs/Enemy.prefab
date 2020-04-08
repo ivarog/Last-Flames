@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1383744275}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -319,6 +319,7 @@ MonoBehaviour:
   agent: {fileID: 1383744274}
   bonfire: {fileID: 0}
   animator: {fileID: 1026186166939296643}
+  health: 100
 --- !u!1 &3771608843520145766
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,9 +752,10 @@ GameObject:
   m_Component:
   - component: {fileID: 304343212822827215}
   - component: {fileID: 7807982466240882229}
+  - component: {fileID: 1643875487}
   m_Layer: 0
   m_Name: SK_Character_Survivor_Businessman
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -842,3 +844,17 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.27502063, y: 0.025775552, z: 0.21563172}
     m_Extent: {x: 1.022671, y: 0.6369941, z: 0.42142314}
   m_DirtyAABB: 0
+--- !u!64 &1643875487
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869579406615992447}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -6417397832556334223, guid: 6c4cfe4d73ce08b4d91f34284f130aea, type: 3}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7537120139929289095}
   - component: {fileID: -1407550886780523271}
   - component: {fileID: 5797254461340128906}
+  - component: {fileID: -8973759433599365597}
   m_Layer: 0
   m_Name: Small_Bullet
   m_TagString: Untagged
@@ -109,4 +110,24 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &-8973759433599365597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7550432370328419679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eceb836ca83edf24991f8c25668352c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyAfter: 5
+  destroyOnImpact: 1
+  minDestroyTime: 0
+  maxDestroyTime: 0
+  damageBullet: 50
+  bloodPrefab: {fileID: 373521571883261301, guid: f20fd44d1aebca64aa03df987d62ff30,
+    type: 3}
+  metalImpactPrefabs: []

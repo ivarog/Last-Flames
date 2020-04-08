@@ -14,6 +14,7 @@ TagManager:
   - FxTemporaire
   - Log
   - Trunk
+  - Enemy
   layers:
   - Default
   - TransparentFX
