@@ -36,7 +36,6 @@ public class AxeController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        Debug.Log("Estoy aqui");
 
         if(other.gameObject.tag == "Tree" && isCutting)  
         {

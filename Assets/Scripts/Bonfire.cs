@@ -9,6 +9,8 @@ public class Bonfire : MonoBehaviour
     [SerializeField] float timeBonfireLife;
     [SerializeField] ParticleSystem fire;
     [SerializeField] ParticleSystem smoke;
+    [SerializeField] float logForce;
+    [SerializeField] ParticleSystem smokeExplosion;
 
     private float speed; 
     private Light lightBonfireComponent;
@@ -16,6 +18,8 @@ public class Bonfire : MonoBehaviour
     private const float maxIntensity = 3;
     private float startSizeFire;
     private float startSizeSmoke;
+    private GameObject player;
+    private WeaponSelector weaponSelector;
 
     private void Start() 
     {
@@ -23,11 +27,14 @@ public class Bonfire : MonoBehaviour
         startSizeFire = fire.main.startSize.constant;
         startSizeSmoke = smoke.main.startSize.constant;
         speed = intensity / timeBonfireLife;
+        player = GameObject.Find("Player"); 
+        weaponSelector = FindObjectOfType<WeaponSelector>();
     }
 
     private void Update() 
     {
         ReduceIntensityBonfire(speed);
+        RekindleFlame();
     }
 
     private void ReduceIntensityBonfire(float speed)
@@ -44,7 +51,17 @@ public class Bonfire : MonoBehaviour
         main.startSize = new ParticleSystem.MinMaxCurve(startSizeFire * intensity / maxIntensity); 
         main = smoke.main;
         main.startSize = new ParticleSystem.MinMaxCurve(startSizeSmoke * intensity / maxIntensity); 
+    }
 
+    private void RekindleFlame()
+    {
+        if((Vector3.Distance(transform.position, player.transform.position)) < 2f && weaponSelector.carryingTrunk)
+        {
+            intensity += logForce;
+            ChangeBonfireIntensity(intensity);
+            weaponSelector.DesactivateLogItem();
+            smokeExplosion.Play();
+        }
     }
 
 }
