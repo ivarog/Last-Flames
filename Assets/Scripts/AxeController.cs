@@ -18,16 +18,17 @@ public class AxeController : MonoBehaviour
     void Update()
     {
         InputController();
+        Debug.Log(Input.GetAxis("R2"));
     }
 
     void InputController()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             isCutting = true;
             animator.SetInteger("AxeState", 1);
         }    
-        else if(Input.GetMouseButtonUp(0))
+        else if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.JoystickButton7))
         {
             isCutting = false;
             animator.SetInteger("AxeState", 0);

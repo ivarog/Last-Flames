@@ -24,7 +24,7 @@ public class FallenTrunk : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, player.transform.position) < 2f)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !weaponSelector.carryingTrunk)
+            if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0))&& !weaponSelector.carryingTrunk)
             {
                 weaponSelector.ActivateLogItem();
                 trunk.SetActive(false);

@@ -24,7 +24,7 @@ public class WeaponSelector : MonoBehaviour
 
     private void Update() 
     {
-        if(Input.GetKeyUp(KeyCode.Q) && !carryingTrunk)
+        if((Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.JoystickButton3)) && !carryingTrunk)
         {
             ChangeWeapon();
         }    

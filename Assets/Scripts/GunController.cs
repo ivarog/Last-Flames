@@ -25,7 +25,7 @@ public class GunController : MonoBehaviour {
 
     private void Shoot()
     {
-        if ((Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Mouse0)) && Time.time > nextFire) 
+        if ((Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Mouse0)) && Time.time > nextFire) 
         {
             nextFire = Time.time + fireRate;
             GameObject projectile = Instantiate(bullet, Camera.main.transform.position + (Camera.main.transform.forward * 0.35f), Quaternion.identity);
