@@ -64,4 +64,10 @@ public class Bonfire : MonoBehaviour
         }
     }
 
+    public void ReduceFlame(float mount)
+    {
+        intensity -= mount;
+        ChangeBonfireIntensity(intensity);
+    }
+
 }

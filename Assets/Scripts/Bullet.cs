@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour {
 	private void OnCollisionEnter (Collision collision) 
 	{
 
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "EnemyBody")
         {
             collision.gameObject.transform.parent.parent.GetComponent<EnemyController>().DamageEnemy(damageBullet);
             GameObject actualBlood = Instantiate(bloodPrefab, transform.position, Quaternion.identity);

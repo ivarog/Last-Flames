@@ -9,11 +9,17 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject bonfire;
     [SerializeField] Animator animator;
     [SerializeField] float health;
+    [SerializeField] float damageFlame;
+
+    private Bonfire bonfireScript;
+    bool canReduceFlameOnce = true;
+    public bool iAmDead = false;
 
     // Start is called before the first frame update
     void Start()
     {
         bonfire = GameObject.Find("Bonfire");
+        bonfireScript = bonfire.GetComponent<Bonfire>();
     }
 
     // Update is called once per frame
@@ -29,7 +35,13 @@ public class EnemyController : MonoBehaviour
         {
             agent.isStopped = true;
             animator.SetBool("EnemyDead", true);
+            iAmDead = true;
             Destroy(gameObject, 8f);
+            if(canReduceFlameOnce) 
+            {
+                canReduceFlameOnce = false;
+                bonfireScript.ReduceFlame(damageFlame);
+            }
         }
     }
 
@@ -41,6 +53,7 @@ public class EnemyController : MonoBehaviour
         {
             agent.isStopped = true;
             animator.SetBool("EnemyDead", true);
+            iAmDead = true;
             Destroy(gameObject, 8f);
         }
     }

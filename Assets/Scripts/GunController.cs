@@ -35,6 +35,8 @@ public class GunController : MonoBehaviour {
 
             revolver.SetTrigger("Shoot");
 
+            GameObject.Find("Main Camera").GetComponent<StressReceiver>().InduceStress(0.3f);
+
             // if(shoot != null) AudioSource.PlayClipAtPoint(shoot, projectile.transform.position, 1.0F);
             Destroy(projectile, 5f);
         }
