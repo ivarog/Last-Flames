@@ -11,11 +11,14 @@ public class PlayerControllerPC : MonoBehaviour
     CharacterController character;
     [SerializeField] float sensitivity = 100;
     [SerializeField] Transform playerBody;
+    
     float xRotation = 0;
+    AudioSource steps;
 
     private void Start() 
     {
         character = GetComponent<CharacterController>();
+        steps = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate() 
@@ -31,6 +34,16 @@ public class PlayerControllerPC : MonoBehaviour
         float z = Input.GetAxis("Vertical");
         Vector3 movement = transform.right * x + transform.forward * z;
         character.Move(movement * Time.deltaTime * velocity);
+
+        if(Mathf.Abs(x) > 0.05 || Mathf.Abs(z) > 0.05)
+        {
+            if(!steps.isPlaying)
+                steps.Play();
+        }
+        else
+        {
+            steps.Stop();
+        }
     }
 
     void Rotate()

@@ -8,14 +8,16 @@ public class GunController : MonoBehaviour {
     [SerializeField] AudioClip shoot;
     [SerializeField] float fireRate = 1;
     [SerializeField] float speed = 30;
+    [SerializeField] AudioClip shotAudioClip;
 
-    Animator revolver;
-    
+    private Animator revolver;
     private float nextFire = 0.0F;
+    private AudioSource shotSound;
 
     private void Start() 
     {
-        revolver = GetComponent<Animator>();    
+        revolver = GetComponent<Animator>();   
+        shotSound = GetComponent<AudioSource>(); 
     }
 
     void Update() 
@@ -34,6 +36,7 @@ public class GunController : MonoBehaviour {
             rb.velocity= Camera.main.transform.forward * speed;
 
             revolver.SetTrigger("Shoot");
+            shotSound.PlayOneShot(shotAudioClip);
 
             GameObject.Find("Main Camera").GetComponent<StressReceiver>().InduceStress(0.3f);
 

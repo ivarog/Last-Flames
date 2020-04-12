@@ -42,6 +42,7 @@ public class Bullet : MonoBehaviour {
             collision.gameObject.transform.parent.parent.GetComponent<EnemyController>().DamageEnemy(damageBullet);
             GameObject actualBlood = Instantiate(bloodPrefab, transform.position, Quaternion.identity);
             actualBlood.transform.rotation = Quaternion.FromToRotation(actualBlood.transform.right, transform.up);
+			Destroy(actualBlood, 3f);
         }
 
 		//If destroy on impact is false, start 

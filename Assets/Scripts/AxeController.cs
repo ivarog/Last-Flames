@@ -6,19 +6,22 @@ public class AxeController : MonoBehaviour
 {
     [SerializeField] ParticleSystem treeParticles;
     [SerializeField] float damage;
+    [SerializeField] AudioClip axeSound;
+
 
     private Animator animator;
     bool isCutting;
+    private AudioSource audioSource;
 
     private void Start() 
     {
-        animator = GetComponent<Animator>();    
+        animator = GetComponent<Animator>();   
+        audioSource = GetComponent<AudioSource>(); 
     }
 
     void Update()
     {
         InputController();
-        Debug.Log(Input.GetAxis("R2"));
     }
 
     void InputController()
@@ -43,6 +46,7 @@ public class AxeController : MonoBehaviour
             ParticleSystem actualParticle = Instantiate(treeParticles, other.contacts[0].point, Quaternion.identity, transform);
             Destroy(actualParticle, 3f);
             other.gameObject.GetComponent<Tree>().HitTree(damage);
+            audioSource.PlayOneShot(axeSound);
         }  
     }
 }

@@ -13,9 +13,12 @@ public class Tree : MonoBehaviour
     Quaternion toRotation;
     Quaternion myRotationBeforeFall;
 
+    private AudioManager audioManager;
+
     private void Start() 
     {
         canFall = false;   
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update() 
@@ -23,6 +26,7 @@ public class Tree : MonoBehaviour
         if(canFall)
         {
             SmoothFall();
+            audioManager.Play("TreeFalling");
         }    
     }
 
@@ -59,6 +63,7 @@ public class Tree : MonoBehaviour
             DisappearTree();
         }
     }
+    
 
     private void DisappearTree()
     {

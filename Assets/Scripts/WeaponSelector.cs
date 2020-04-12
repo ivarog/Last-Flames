@@ -12,6 +12,7 @@ public class WeaponSelector : MonoBehaviour
     bool axeIsActive;
     bool gunIsActive;
     public bool carryingTrunk;
+    private AudioSource audioSource;
 
     private void Start() 
     {
@@ -20,6 +21,7 @@ public class WeaponSelector : MonoBehaviour
         axe.SetActive(true);
         gun.SetActive(false);
         logItem.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() 
@@ -27,6 +29,7 @@ public class WeaponSelector : MonoBehaviour
         if((Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.JoystickButton3)) && !carryingTrunk)
         {
             ChangeWeapon();
+            audioSource.Play();
         }    
     }
 

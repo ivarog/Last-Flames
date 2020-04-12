@@ -11,6 +11,9 @@ public class Bonfire : MonoBehaviour
     [SerializeField] ParticleSystem smoke;
     [SerializeField] float logForce;
     [SerializeField] ParticleSystem smokeExplosion;
+    [SerializeField] AudioClip bonfireSound;
+    [SerializeField] AudioClip rekindleSound;
+    [SerializeField] AudioClip woodFalling;
 
     private float speed; 
     private Light lightBonfireComponent;
@@ -20,6 +23,7 @@ public class Bonfire : MonoBehaviour
     private float startSizeSmoke;
     private GameObject player;
     private WeaponSelector weaponSelector;
+    private AudioSource audioSource;
 
     private void Start() 
     {
@@ -29,12 +33,15 @@ public class Bonfire : MonoBehaviour
         speed = intensity / timeBonfireLife;
         player = GameObject.Find("Player"); 
         weaponSelector = FindObjectOfType<WeaponSelector>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(bonfireSound);
     }
 
     private void Update() 
     {
         ReduceIntensityBonfire(speed);
         RekindleFlame();
+        FlameGameOver();
     }
 
     private void ReduceIntensityBonfire(float speed)
@@ -51,12 +58,15 @@ public class Bonfire : MonoBehaviour
         main.startSize = new ParticleSystem.MinMaxCurve(startSizeFire * intensity / maxIntensity); 
         main = smoke.main;
         main.startSize = new ParticleSystem.MinMaxCurve(startSizeSmoke * intensity / maxIntensity); 
+        audioSource.volume = intensity / maxIntensity;
     }
 
     private void RekindleFlame()
     {
         if((Vector3.Distance(transform.position, player.transform.position)) < 2f && weaponSelector.carryingTrunk)
         {
+            audioSource.PlayOneShot(rekindleSound);
+            audioSource.PlayOneShot(woodFalling);
             intensity += logForce;
             ChangeBonfireIntensity(intensity);
             weaponSelector.DesactivateLogItem();
@@ -68,6 +78,14 @@ public class Bonfire : MonoBehaviour
     {
         intensity -= mount;
         ChangeBonfireIntensity(intensity);
+    }
+
+    public void FlameGameOver()
+    {
+        if(intensity <= 0)
+        {
+            Debug.Log("Game Over");
+        }
     }
 
 }

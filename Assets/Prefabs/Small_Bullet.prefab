@@ -127,7 +127,7 @@ MonoBehaviour:
   destroyOnImpact: 1
   minDestroyTime: 0
   maxDestroyTime: 0
-  damageBullet: 50
+  damageBullet: 25
   bloodPrefab: {fileID: 373521571883261301, guid: f20fd44d1aebca64aa03df987d62ff30,
     type: 3}
   metalImpactPrefabs: []
