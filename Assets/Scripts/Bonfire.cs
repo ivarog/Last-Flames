@@ -14,6 +14,7 @@ public class Bonfire : MonoBehaviour
     [SerializeField] AudioClip bonfireSound;
     [SerializeField] AudioClip rekindleSound;
     [SerializeField] AudioClip woodFalling;
+    [SerializeField] public bool canIReduce = true;
 
     private float speed; 
     private Light lightBonfireComponent;
@@ -24,6 +25,7 @@ public class Bonfire : MonoBehaviour
     private GameObject player;
     private WeaponSelector weaponSelector;
     private AudioSource audioSource;
+    public bool fireReinforced = false;
 
     private void Start() 
     {
@@ -39,7 +41,7 @@ public class Bonfire : MonoBehaviour
 
     private void Update() 
     {
-        ReduceIntensityBonfire(speed);
+        if(canIReduce) ReduceIntensityBonfire(speed);
         RekindleFlame();
         FlameGameOver();
     }
@@ -65,6 +67,7 @@ public class Bonfire : MonoBehaviour
     {
         if((Vector3.Distance(transform.position, player.transform.position)) < 2f && weaponSelector.carryingTrunk)
         {
+            fireReinforced = true;
             audioSource.PlayOneShot(rekindleSound);
             audioSource.PlayOneShot(woodFalling);
             intensity += logForce;
@@ -84,7 +87,7 @@ public class Bonfire : MonoBehaviour
     {
         if(intensity <= 0)
         {
-            Debug.Log("Game Over");
+            FindObjectOfType<LeveManager>().GameOver();
         }
     }
 

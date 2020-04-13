@@ -26,7 +26,7 @@ public class Tree : MonoBehaviour
         if(canFall)
         {
             SmoothFall();
-            audioManager.Play("TreeFalling");
+            AudioManager.instance.Play("TreeFalling");
         }    
     }
 
@@ -44,6 +44,12 @@ public class Tree : MonoBehaviour
             GetComponent<MeshCollider>().enabled = false;
             canFall = true;
             myRotationBeforeFall = transform.rotation;
+
+            try
+            {
+                FindObjectOfType<TutorialManager>().treeFallen = true;
+            }
+            catch{}
         }
     }
 

@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] float damageFlame;
     [SerializeField] AudioClip warningSound;
     [SerializeField] AudioClip deadSound;
+    [SerializeField] bool tutorialMode = false;
+    [SerializeField] GameObject enemy;
 
     private Bonfire bonfireScript;
     bool canReduceFlameOnce = true;
@@ -32,7 +34,7 @@ public class EnemyController : MonoBehaviour
     {
         agent.SetDestination(bonfire.transform.position);
 
-        if(Mathf.Abs(Vector3.Distance(transform.position, bonfire.transform.position)) <= 12f && !warningPlayed)
+        if(Mathf.Abs(Vector3.Distance(transform.position, bonfire.transform.position)) <= 13f && !warningPlayed)
         {
             warningPlayed = true;
             audioSource.PlayOneShot(warningSound);
@@ -52,7 +54,14 @@ public class EnemyController : MonoBehaviour
             if(canReduceFlameOnce) 
             {
                 canReduceFlameOnce = false;
-                bonfireScript.ReduceFlame(damageFlame);
+                if(tutorialMode)
+                {
+                    Instantiate(enemy, new Vector3(20f, 0f, 0.3f), Quaternion.identity);
+                }
+                else
+                {
+                    bonfireScript.ReduceFlame(damageFlame);
+                }
             }
         }
     }
@@ -63,6 +72,10 @@ public class EnemyController : MonoBehaviour
 
         if(health <= 0)
         {
+            if(tutorialMode)
+            {
+                FindObjectOfType<TutorialManager>().enemyShoten = true;
+            }
             agent.isStopped = true;
             animator.SetBool("EnemyDead", true);
             iAmDead = true;

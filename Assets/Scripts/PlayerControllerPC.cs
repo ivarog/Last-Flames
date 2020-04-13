@@ -14,6 +14,7 @@ public class PlayerControllerPC : MonoBehaviour
     
     float xRotation = 0;
     AudioSource steps;
+    public bool iAmMoving;
 
     private void Start() 
     {
@@ -39,10 +40,12 @@ public class PlayerControllerPC : MonoBehaviour
         {
             if(!steps.isPlaying)
                 steps.Play();
+            iAmMoving = true;
         }
         else
         {
             steps.Stop();
+            iAmMoving = false;
         }
     }
 

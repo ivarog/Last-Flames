@@ -9,6 +9,7 @@ public class MouseLook : MonoBehaviour
     [SerializeField] Transform playerBody;
     [SerializeField] Transform myCamera;
     float xRotation = 0;
+    public bool iAmLooking = false;
 
     void Start()
     {
@@ -26,5 +27,7 @@ public class MouseLook : MonoBehaviour
         myCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         playerBody.Rotate(Vector3.up * mouseX);
+
+        iAmLooking = (Mathf.Abs(mouseX) > 0.1 || Mathf.Abs(mouseY) > 0.05) ? true : false;
     }
 }

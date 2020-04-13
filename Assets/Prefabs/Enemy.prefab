@@ -325,6 +325,8 @@ MonoBehaviour:
   damageFlame: 0.6
   warningSound: {fileID: 8300000, guid: b696b4079a4ecbd478302186eaa82626, type: 3}
   deadSound: {fileID: 8300000, guid: 3415406a62a2e0041bdc92013d9e5b63, type: 3}
+  tutorialMode: 0
+  enemy: {fileID: 2723844269688523464}
   iAmDead: 0
 --- !u!82 &-2011018174632854818
 AudioSource:

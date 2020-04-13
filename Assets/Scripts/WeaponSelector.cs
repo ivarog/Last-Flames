@@ -13,6 +13,8 @@ public class WeaponSelector : MonoBehaviour
     bool gunIsActive;
     public bool carryingTrunk;
     private AudioSource audioSource;
+    Transform axeTransform;
+    public bool weaponSwitched = false;
 
     private void Start() 
     {
@@ -22,6 +24,7 @@ public class WeaponSelector : MonoBehaviour
         gun.SetActive(false);
         logItem.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        axeTransform = axe.transform;
     }
 
     private void Update() 
@@ -37,7 +40,7 @@ public class WeaponSelector : MonoBehaviour
     {
         axeIsActive = !axeIsActive;
         gunIsActive = !gunIsActive;
-
+        weaponSwitched = true;
         UpdateWeaponsState();
     }
 
@@ -46,6 +49,8 @@ public class WeaponSelector : MonoBehaviour
         if(axeIsActive)
         {
             axe.SetActive(true);
+            axe.transform.position = axeTransform.position;
+            axe.transform.rotation = axeTransform.rotation;
             gun.SetActive(false);
         }
         else if(gunIsActive)
