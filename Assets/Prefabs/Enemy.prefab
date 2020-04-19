@@ -321,7 +321,7 @@ MonoBehaviour:
   agent: {fileID: 1383744274}
   bonfire: {fileID: 0}
   animator: {fileID: 1026186166939296643}
-  health: 75
+  health: 100
   damageFlame: 0.6
   warningSound: {fileID: 8300000, guid: b696b4079a4ecbd478302186eaa82626, type: 3}
   deadSound: {fileID: 8300000, guid: 3415406a62a2e0041bdc92013d9e5b63, type: 3}

@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour {
 
     [SerializeField] float damageBullet;
     [SerializeField] GameObject bloodPrefab;
+	[SerializeField] bool turretBullet;
 
 	[Header("Impact Effect Prefabs")]
 	public Transform [] metalImpactPrefabs;
@@ -26,7 +27,11 @@ public class Bullet : MonoBehaviour {
 	{
 		//Start destroy timer
 		StartCoroutine (DestroyAfter ());
-        myRB = GetComponent<Rigidbody>();    
+        myRB = GetComponent<Rigidbody>(); 
+		if(!turretBullet)
+		{
+			damageBullet = PlayerState.gunDamage;
+		}   
 	}
 
     private void Update() 

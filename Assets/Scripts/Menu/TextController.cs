@@ -42,6 +42,8 @@ public class TextController : MonoBehaviour
 
     void PlayGame()
     {
+        PlayerState.introPlayed = true;
+        PlayerState.SavePlayer();
         SceneManager.LoadScene("Level1");
     }
 

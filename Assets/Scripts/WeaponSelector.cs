@@ -13,7 +13,8 @@ public class WeaponSelector : MonoBehaviour
     bool gunIsActive;
     public bool carryingTrunk;
     private AudioSource audioSource;
-    Transform axeTransform;
+    Vector3 axeInitialPosition;
+    Quaternion axeInitialRotation;
     public bool weaponSwitched = false;
 
     private void Start() 
@@ -24,7 +25,8 @@ public class WeaponSelector : MonoBehaviour
         gun.SetActive(false);
         logItem.SetActive(false);
         audioSource = GetComponent<AudioSource>();
-        axeTransform = axe.transform;
+        axeInitialPosition = axe.transform.localPosition;
+        axeInitialRotation = axe.transform.rotation;
     }
 
     private void Update() 
@@ -49,8 +51,8 @@ public class WeaponSelector : MonoBehaviour
         if(axeIsActive)
         {
             axe.SetActive(true);
-            axe.transform.position = axeTransform.position;
-            axe.transform.rotation = axeTransform.rotation;
+            axe.transform.localPosition = axeInitialPosition;
+            axe.transform.localRotation = axeInitialRotation;
             gun.SetActive(false);
         }
         else if(gunIsActive)

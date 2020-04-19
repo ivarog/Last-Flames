@@ -17,6 +17,7 @@ public class AxeController : MonoBehaviour
     {
         animator = GetComponent<Animator>();   
         audioSource = GetComponent<AudioSource>(); 
+        damage = PlayerState.axeDamage;
     }
 
     void Update()

@@ -23,6 +23,7 @@ public class TutorialManager : MonoBehaviour
         weaponSelector = FindObjectOfType<WeaponSelector>();
         bonfire = FindObjectOfType<Bonfire>();
         FindObjectOfType<AudioManager>().Play("Ambient");
+        Cursor.visible = false;
     }
     
 

@@ -14,13 +14,16 @@ public class Turret : MonoBehaviour
     [SerializeField] Transform gun;
     [SerializeField] ParticleSystem gunSmoke;
     [SerializeField] ParticleSystem gunSparks;
+    [SerializeField] AudioClip turretSound;
 
     private Transform target;
     private float nextFire = 0.0F;
+    private AudioSource audioSource;
     
     private void Start() 
     {
-        InvokeRepeating("UpdateTarget", 2f, 0.3f);    
+        InvokeRepeating("UpdateTarget", 2f, 0.3f);  
+        audioSource = GetComponent<AudioSource>();  
     }
 
     private void Update() 
@@ -83,6 +86,7 @@ public class Turret : MonoBehaviour
         nextFire = Time.time + fireRate;
         gunSmoke.Play();
         gunSparks.Play();
+        audioSource.PlayOneShot(turretSound);
         GameObject projectile = Instantiate(bullet, gun.position, Quaternion.identity);
         projectile.transform.rotation = Quaternion.FromToRotation(projectile.transform.up, direction);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();

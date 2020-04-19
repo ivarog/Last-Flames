@@ -19,22 +19,23 @@ public class LeveManager : MonoBehaviour
         AudioManager.instance.Play("Ambient");
         textCountdown = countdown.GetComponent<Text>();
         animator.Play("Clock");
+        Cursor.visible = false;
     }
 
     private void Update() 
     {
         Counter();    
+        Exit();
     }
 
     private void Counter()
     {
-        if(gameTime > 0) 
-        {
-            gameTime -= Time.deltaTime;
-            int minutes = Mathf.FloorToInt(gameTime / 60F);
-            int seconds = Mathf.FloorToInt(gameTime - minutes * 60);
-            textCountdown.text = minutes + ":" + seconds;
-        }
+        gameTime -= Time.deltaTime;
+        if(gameTime < 0) gameTime = 0;
+        int minutes = Mathf.FloorToInt(gameTime / 60F);
+        int seconds = Mathf.FloorToInt(gameTime - minutes * 60);
+        textCountdown.text = minutes + ":" + seconds;
+
 
         if(gameTime <= 0)
         {
@@ -44,7 +45,12 @@ public class LeveManager : MonoBehaviour
             {
                 enemy.GetComponent<EnemyController>().iAmDead = true;
             }
-            StartCoroutine(ReturnToMenu());
+            Spawner[] spawners = FindObjectsOfType<Spawner>();
+            foreach(Spawner s in spawners)
+            {
+                s.spawnActive = false;
+            }
+            StartCoroutine(NextLevel());
         }
     }
 
@@ -54,11 +60,33 @@ public class LeveManager : MonoBehaviour
         StartCoroutine(ReturnToMenu());
     }
 
+    IEnumerator NextLevel()
+    {
+        yield return new WaitForSeconds(5f);
+        if(SceneManager.GetActiveScene().name == "Level1")
+        {
+            SceneManager.LoadScene("Upgrade1");
+        }
+        if(SceneManager.GetActiveScene().name == "Level2")
+        {
+            SceneManager.LoadScene("Menu");
+        }
+    }
+
     IEnumerator ReturnToMenu()
     {
         yield return new WaitForSeconds(5f);
+        AudioManager.instance.Stop("Ambient");    
         SceneManager.LoadScene("Menu");
-        AudioManager.instance.Stop("Ambient");
+    }
+
+    private void Exit()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");   
+           FindObjectOfType<AudioManager>().Stop("Ambient");
+        }
     }
 
     
