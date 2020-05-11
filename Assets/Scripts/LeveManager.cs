@@ -43,7 +43,7 @@ public class LeveManager : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach(GameObject enemy in enemies)
             {
-                enemy.GetComponent<EnemyController>().iAmDead = true;
+                enemy.GetComponent<EnemyController>().DamageEnemy(1000f);
             }
             Spawner[] spawners = FindObjectsOfType<Spawner>();
             foreach(Spawner s in spawners)
@@ -67,7 +67,11 @@ public class LeveManager : MonoBehaviour
         {
             SceneManager.LoadScene("Upgrade1");
         }
-        if(SceneManager.GetActiveScene().name == "Level2")
+        else if(SceneManager.GetActiveScene().name == "Level2")
+        {
+            SceneManager.LoadScene("Upgrade2");
+        }
+        else if(SceneManager.GetActiveScene().name == "Level3")
         {
             SceneManager.LoadScene("Menu");
         }

@@ -21,14 +21,14 @@ public class UpgradeSystem1 : MonoBehaviour
 
     public void AxeUpdgrade()
     {
-        PlayerState.axeDamage = 50f;
+        PlayerState.axeDamage = 150f;
         DesactivateButtons();
         StartCoroutine(LoadNextScene());
     }
 
     public void TurretUpdgrade()
     {
-        PlayerState.turrets = 1;
+        PlayerState.turrets = PlayerState.turrets + 1;
         DesactivateButtons();
         StartCoroutine(LoadNextScene());
     }
