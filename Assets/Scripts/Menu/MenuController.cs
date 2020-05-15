@@ -8,6 +8,7 @@ public class MenuController : MonoBehaviour
 {
     [SerializeField] Button continueButton;
     [SerializeField] GameObject panelNewGame;
+    [SerializeField] GameObject panelLoading;
 
     AudioSource audioSource;
 
@@ -28,6 +29,7 @@ public class MenuController : MonoBehaviour
     public void Tutorial()
     {
         SceneManager.LoadScene("Tutorial");
+        panelLoading.SetActive(true);
     }
 
     public void NewGame()
@@ -39,6 +41,7 @@ public class MenuController : MonoBehaviour
         else
         {
             SceneManager.LoadScene("Story");
+            panelLoading.SetActive(true);
         }
     }
 
@@ -46,12 +49,14 @@ public class MenuController : MonoBehaviour
     {
         PlayerState.ResetPlayer();
         SceneManager.LoadScene("Story");
+        panelLoading.SetActive(true);
 
     }
 
     public void ContinueGame()
     {        
         SceneManager.LoadScene("Level" + PlayerState.actualLevel);
+        panelLoading.SetActive(true);
     }
 
     public void ExitGame()
